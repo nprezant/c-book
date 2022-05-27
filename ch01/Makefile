@@ -1,5 +1,5 @@
 
-SOURCES := hello.c
+SOURCES := $(shell find . -name "*.c")
 
 BINS := $(SOURCES:.c=.out)
 
