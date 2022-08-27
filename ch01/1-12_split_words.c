@@ -15,7 +15,7 @@ int main() {
             state = IN;
             putchar('\n');
         }
-        if (state == IN)
+        if (state == IN || (state == OUT && c == '\n'))
             putchar(c);
     }
 }
