@@ -25,7 +25,7 @@ int main() {
     }
 
     // Horizontal bar chart
-    
+
     // Max instance count
     nc = 0;
     for (i=0; i<MAX_WORD_LENGTH; ++i) {
