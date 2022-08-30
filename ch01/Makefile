@@ -7,7 +7,7 @@ BINS := $(SOURCES:.c=.out)
 all: $(BINS)
 
 %.out: %.c
-	cc $< -o $@
+	cc -g $< -o $@
 
 .PHONY: clean
 clean:
