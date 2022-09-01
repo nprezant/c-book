@@ -7,7 +7,9 @@ int main() {
        if (c == '\n')
            printf("\\n\n");
        else if (c == '\t')
-           printf(" -> ");
+           printf("\\t");
+       else if (c == ' ')
+           putchar('`');
        else
            putchar(c);
     }
