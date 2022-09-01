@@ -2,7 +2,7 @@
 
 #define MAXLINE 40
 
-int getline2(char line[], int maxline);
+int getline_(char line[], int maxline);
 void reverse(char s[]);
 int len(char s[]);
 void rstrip(char s[], char c);
@@ -10,32 +10,26 @@ void rstrip(char s[], char c);
 int main() {
     char line[MAXLINE];
 
-    while (getline2(line, MAXLINE) > 0) {
+    while (getline_(line, MAXLINE) > 0) {
         rstrip(line, '\n');
         reverse(line);
         printf("%s\n", line);
     }
 }
 
-/* getline: read a line into s, return length */
-int getline2(char s[], int lim) {
+int getline_(char s[], int lim) {
 
     int c, i;
 
-    for (i=0; (c=getchar())!=EOF && c!='\n'; ++i) {
-        if (i < lim)
-            s[i] = c;
-    }
+    for (i=0; (c=getchar())!=EOF && c!='\n' && i < lim-1; ++i)
+        s[i] = c;
 
-    if (c == '\n' && i < lim) {
+    if (c == '\n') {
         s[i] = c;
         ++i;
     }
 
-    if (i < lim)
-        s[i] = '\0';
-    else
-        s[lim-1] = '\0';
+    s[i] = '\0';
 
     return i;
 }
