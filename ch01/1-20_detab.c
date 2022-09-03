@@ -24,7 +24,8 @@ int main() {
                 else
                     putchar(' ');
             }
-        } else {
+        }
+        else {
             if (c == '\n')
                 i = 0;
             else
