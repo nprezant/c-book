@@ -27,8 +27,15 @@ int main() {
 int htoi(char s[]) {
     int i, n;
 
-    n = 0;
-    for (i=0; isdigit(s[i]) || 'a' <= tolower(s[i]) && tolower(s[i]) <= 'f'; ++i) {
+    /* Handle whitespace */
+    for (i=0; s[i]==' ' || s[i]=='\t'; ++i) {}
+
+    /* Handle possibility of optional 0x or 0X */
+    if (s[i]=='0' && tolower(s[i+1])=='x')
+        i += 2;
+
+    /* Parse hex number. Ignores non-hex characters */
+    for (n=0; isdigit(s[i]) || 'a' <= tolower(s[i]) && tolower(s[i]) <= 'f'; ++i) {
         n *= 16;
         if (isdigit(s[i]))
             n += s[i] - '0';
@@ -50,10 +57,8 @@ int getline_(char s[], int lim) {
     int c, i;
     for (i=0; i < lim-1 && (c=getchar())!=EOF && c!='\n'; ++i)
         s[i] = c;
-    if (c == '\n') {
-        s[i] = c;
-        ++i;
-    }
+    if (c == '\n')
+        s[i++] = c;
     s[i] = '\0';
     return i;
 }
