@@ -9,6 +9,7 @@ void printbits(unsigned x, int n);
 /* print a table row */
 void printrow_d(unsigned x);
 void printrow_ds(unsigned x, char s[]);
+void printsetbitstest(unsigned x, int p, int n, unsigned y);
 
 /*
 #define _G2(B, A_T, B_T1, B_T1_FN, B2_T, B2_T_FN) \
@@ -26,7 +27,7 @@ int main()
     unsigned int i;
 
     // Print out 0-15
-    printf("%12s%12s%12s%12s\n", "uint", "hex", "binary", "source");
+    printf("%12s%12s%12s%24s\n", "uint", "hex", "binary", "source");
     for (i=0; i<16; ++i) {
         printrow_d(i);
     }
@@ -54,6 +55,25 @@ int main()
     printrow_ds(0 & 0, "0 & 0");
     printrow_ds(1 & 0, "1 & 0");
     printrow_ds(~0 & 3, "~0 & 3");
+
+    // Some more testing mask values
+    printf("\n");
+    printsetbitstest(0x15, 2, 2, 0x0);
+}
+
+void printsetbitstest(unsigned x, int p, int n, unsigned y)
+{
+    printrow_ds(x, "x");
+    printrow_ds(p, "p");
+    printrow_ds(n, "n");
+    printrow_ds(y, "y");
+    unsigned mask = ~(~0 << n) << p+1-n;
+    printrow_ds(mask, "mask");
+    printrow_ds(~mask, "~mask");
+    printrow_ds(x & ~mask, "x & ~mask");
+    printrow_ds(mask >> p+1-n, "(mask >> p+1-n)");
+    printrow_ds(y & (mask >> p+1-n), "(y & (...))");
+    printrow_ds((y & (mask >> p+1-n)) << p+1-n, "(y & (...)) << p+1-n");
 }
 
 void printrow_d(unsigned x)
@@ -66,7 +86,7 @@ void printrow_ds(unsigned x, char s[])
     printf("%12d%12x", x, x);
     printf("%4s", ""); // padding for the printbits command
     printbits(x, 7);
-    printf("%12s", s);
+    printf("%24s", s);
     printf("\n");
 }
 
