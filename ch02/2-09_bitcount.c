@@ -18,13 +18,13 @@
  *
  * Explanation:
  * What does x-1 do?
- *   x  |  x-1  | bin
- *   ------------------
- *   1  |  0    | 0000
- *   2  |  1    | 0001
- *   3  |  2    | 0010
- *   4  |  3    | 0011
- *   5  |  4    | 0100
+ *     x   |  x-1 
+ *   -------------
+ *   0001  | 0000
+ *   0010  | 0001
+ *   0011  | 0010
+ *   0100  | 0011
+ *   0101  | 0100
  *
  * What does x &= (x-1) do?
  *    x    | x &= (x-1)
@@ -60,5 +60,8 @@ int main()
     unsigned x = 0b0101010011001;
     printf("Number of bits in 0101010011001 is %d\n", bitcount(x));
     printf("Number of bits in 01 is %d\n", bitcount(0b01));
+    printf("Number of bits in 10 is %d\n", bitcount(0b10));
     printf("Number of bits in 11 is %d\n", bitcount(0b11));
+    printf("Number of bits in 00 is %d\n", bitcount(0b00));
+
 }
