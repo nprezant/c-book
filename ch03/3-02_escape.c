@@ -83,7 +83,7 @@ void unescape(char s[], char t[])
                     break;
                 default:
                     fprintf(stderr,
-                            "Unrecognized escape sequence: %c%c\n", t[i-1], t[i]);
+                            "Error: Unrecognized escape sequence: %c%c\n",t[i-1], t[i]);
                     s[j++] = t[i-1];
                     s[j++] = t[i];
                     break;
